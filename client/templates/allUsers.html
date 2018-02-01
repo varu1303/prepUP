@@ -1,0 +1,60 @@
+<div class="allu-holder">
+  <h2 class="main-head" ng-show="allUsers.usersList">Total Registered Users: {{allUsers.usersList.length}}</h2>
+  <br>
+  <div class="fil-1" ng-show="allUsers.usersList">
+    <p class="fil-lab">Find a user by name</p>
+    <p class="fil-in"><input type="text" ng-model="allUsers.findName"></p>
+  </div>
+  <br>
+  <div class="fil-1" ng-show="allUsers.usersList">
+    <p class="fil-lab">Filter by Number of tests taken (GE returned)</p>
+    <p class="fil-in"><input type="number" ng-model="allUsers.filtestCount"></p>
+  </div>
+  <br>
+  <div class="fil-1" ng-show="allUsers.usersList">
+    <p class="fil-lab">Filter by Average Score (GE returned)</p>
+    <p class="fil-in"><input type="number" ng-model="allUsers.filavgScore"></p>
+  </div>
+
+  <div ng-repeat="user in allUsers.usersList | hasTakenThisManyTest:allUsers.filtestCount
+                                             | hasMoreThanThisAvgScore:allUsers.filavgScore 
+                                             | findByName:allUsers.findName
+  " class="one-holder">
+    <div class="intro">
+      {{user.name}} <span class="hidden-xs">|</span> <i class="fa fa-envelope" aria-hidden="true"></i> {{user.emailId}}
+      <p class="count">{{$index + 1}}</p>
+      <p ng-click="allUsers.setShowTest($index)" class="onebutton" ng-show="user.testsTaken.length">
+        <span> {{user.showTestDetail ? 'Hide Tests' : 'View Tests'}} </span>
+      </p>
+      <div ng-repeat="test in user.testsTaken" ng-show="user.showTestDetail" class="onedetail">
+        <div class="row">
+          <p class="col-xs-12 col-md-5 chunk">{{test.name}} taken on {{test.date | date: ddMMMyyyy}}</p> 
+          <p class="col-xs-12 col-md-3 chunk">Score {{test.score}}</p> 
+          <p class="col-xs-12 col-md-4 chunk c-link">
+            <span ng-click="allUsers.result(user.emailId, test._id)">View Detailed Result</span>
+          </p>
+        </div>
+        <!-- <p class="onelink">View Detailed Result</p> -->
+      </div>
+    </div>
+    <div class="onestats" ng-show="user.testsTaken.length">
+      <p>Has Taken : {{user.testsTaken.length}} Tests</p> 
+      <p>Passed in : {{user.passCount}}</p>  
+      <p>Average Score : {{user.avgScore}}</p>   
+    </div>
+  </div>
+
+
+  <div ng-show="!allUsers.usersList && allUsers.loadDone" class="">
+    <div class="greetbox">
+      <p>Hi Admin!</p>
+      <p>No Users in DB at the moment</p>
+    </div>
+  </div>
+</div>
+
+
+<!--Notification -->
+<div class="notification" ng-class="{disNotification: allUsers.serverNotified}">
+  <p ng-class="{then: allUsers.serverMessageOk, catch: allUsers.serverMessageError}">{{allUsers.notifyThis}}</p>
+</div>

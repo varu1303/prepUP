@@ -1,0 +1,68 @@
+.base {
+  width: 80%;
+  margin: 1rem auto;
+  background-color: #37474F;
+  color: #FFF;
+  font-weight: bolder;
+  padding: 1rem;
+}
+
+.base-head {
+  font-weight: 2.3rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.base-sub {
+  text-align: right;
+  font-weight: bolder;
+}
+
+.base-score {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.base-score span {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.pass {
+  background-color: #18BC9C;
+}
+
+.fail {
+  background-color: #BF4649;
+}
+
+.q-note {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.q-note span {
+  padding: 1rem;
+  display: inline-block;
+  background-color: #18BC9C;
+  color: #FFF;
+}
+
+.qr-base {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.qr-qna {
+  background-color: #37474F;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  color: #FFF;
+}
+
+@media only screen and (max-width: 767px) {
+  .base-head {
+    font-weight: 1.8rem;
+  } 
+}

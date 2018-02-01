@@ -1,0 +1,40 @@
+<div class="testHome" ng-if="AT.tests.length">
+  <h2 class="form-head">
+      <span class="head-underline">Total {{AT.tests.length}}  {{AT.tests.length === 1? 'Test' : 'Tests'}} Available</span>
+  </h2>
+  <div class="availCatFil">
+    <label for="filOpt">Filter of Test </label>
+    Show Tests From  : 
+    <select id="filOpt" class="optCat" required ng-model="AT.selCategory">
+      <option value="All">All</option>
+      <option value="English">English</option>
+      <option value="Quantitative Aptitude">Quantitative Aptitude</option>
+      <option value="Logical Reasoning">Logical Reasoning</option>
+    </select>
+  </div>
+  <div class="utest-list">
+    <div class="col-xs-12 col-sm-6 col-md-4 utestitem" 
+        ng-repeat="test in AT.tests | filterBySection:AT.selCategory">
+      <div class="utest-summbox">
+        <div class="utest-summ">
+          <p>{{test.name}}</p>
+          <p>{{test.questions.length}} Questions | <i class="fa fa-hourglass-start" aria-hidden="true"></i> {{test.duration}} Mins</p>
+          <p><a ng-href="/test/{{test._id}}">View Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="noTestHome"  ng-if="!AT.tests.length && AT.loadDone">
+  <div class="greetbox">
+    <p>Oh! Snap.</p>
+    <p>No Tests available, Wait while we create new ones</p>
+  </div>
+</div>
+
+
+<!--Notification -->
+<div class="notification" ng-class="{disNotification: AT.serverNotified}">
+  <p ng-class="{then: AT.serverMessageOk, catch: AT.serverMessageError}">{{AT.notifyThis}}</p>
+</div>

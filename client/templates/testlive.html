@@ -1,0 +1,56 @@
+<div class="live-container">
+  <div class="summ-set">
+    <div class="qNoSet" ng-show="!testLive.hideSumm">
+      <div class="qNo" ng-repeat="q in testLive.questions" 
+          ng-class="{Qans: testLive.answers[$index].key != undefined, currQ: $index === testLive.qViewNo}"
+          ng-click="testLive.jumpToQ($index)">
+        <p>{{$index+1}}</p>
+      </div>
+    </div>
+    <div class="summ-key" ng-show="!testLive.hideSumm">
+      <p class="tltime-holder">
+        <i class="fa fa-hourglass-half" aria-hidden="true"></i> 
+        {{testLive.timeLeft | secondsToDateTime | date:'HH:mm:ss'}}
+      </p>
+      <p class="tlbtn-holder"><button class="btn-custom" ng-click="testLive.calcResult()">SUBMIT</button></p>
+    </div>
+    <div class="slide-btn">
+      <span ng-show="testLive.hideSumm" ng-click="testLive.hideSumm = false"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+      <span ng-show="!testLive.hideSumm" ng-click="testLive.hideSumm = true"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+    </div>
+  </div>
+  <div class="q-one">
+    <div class="q-holder" ng-repeat="q in testLive.questions | getOneQ:testLive.qViewNo">
+      <p class="q-prob"><span class="secq-header">Q</span>{{q.probStatement}}</p>
+      <br>
+      <div class="q-optblock">
+        <p ng-repeat="option in q.options" class="q-opt" 
+            ng-class="{keyselect: $index == testLive.answers[testLive.qViewNo].key}"
+            ng-click="testLive.qAnswered(testLive.qViewNo, $index)">
+          <span class="sec-opt">{{$index+1}}</span> {{option}}
+        </p>
+      </div>
+      <br>
+      <br class="hidden-xs">
+      <div class="q-nav">
+        <p class="q-static">&nbsp;</p>
+        <p class="q-lr" ng-click="testLive.moveback()" ng-hide="testLive.qViewNo === 0">
+          <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+        </p>
+        <p class="q-lr" ng-click="testLive.movenext()" ng-hide="testLive.qViewNo === testLive.questions.length-1">
+          <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+        </p>
+      </div>
+      
+    </div>    
+  </div>
+</div>
+
+<div class="testloader" ng-show="loadingtest">
+  <div class="tl-image">
+    <div class="tl-cimg">
+      <p class="tl-loadtext"><i class="fa fa-rocket fa-4x" aria-hidden="true"></i></p>
+      <p class="tl-loadtext">Loading...</p>
+    </div>
+  </div>
+</div>

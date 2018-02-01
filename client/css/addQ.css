@@ -1,0 +1,59 @@
+.addQ-holder {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.addQ-holder p {
+  padding: 1rem;
+}
+
+.linkPage {
+  text-align: right;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.linkPage a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.linkPage span {
+  padding: 1rem;
+  background-color: #37474F;
+}
+
+.addq {
+  text-align: right;
+  margin: 0 auto;
+  width: 70%;
+  color: #37474F;
+  font-weight: bolder;
+  display: flex;
+}
+
+.addq p {
+  flex: 1;
+}
+
+.ans {
+  text-align: left;
+}
+
+@media only screen and (max-width: 991px) {
+
+  .linkPage {
+    width: 90%;
+  }
+
+  .addQ-holder {
+    width: 95%;
+  }  
+
+  .addq {
+    text-align: right;
+    width: 90%;
+  }
+}

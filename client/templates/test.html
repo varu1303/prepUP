@@ -1,0 +1,128 @@
+<div ng-show="!Test.isAdmin">
+  <div class="test-holder">
+      <h2 class="form-head">{{Test.tobeTaken.name}}</h2>
+      <p class="section-note">{{Test.compTest.category}}</p>
+      <p><span class="sec-header">Description</span></p>
+      <p>{{Test.tobeTaken.description}}</p>
+      <p><span class="sec-header">Instructions</span></p>
+      <p>{{Test.tobeTaken.instructions}}</p>
+      <br>
+      <br class="hidden-xs">
+      <div class="point-box">
+        <p class="points">{{Test.tobeTaken.questions}} Questions</p>
+        <p class="points">Passing Marks {{Test.tobeTaken.passingLmt}}</p>
+        <p class="points">{{Test.tLimitH}} Hour {{Test.tLimitM}} Minutes</p>
+        <p class="points">Taken by {{Test.tobeTaken.usersAppeared}} {{Test.tobeTaken.usersAppeared === 1 ? ' user' : ' users'}}</p>
+      </div>
+    </div>
+    <p class="take-btn">
+      <button ng-click="Test.userAttempts(Test.tobeTaken._id)" class="btn-custom nt-btn">ATTEMPT</button>
+    </p>
+</div>
+
+
+
+<div ng-show="Test.isAdmin">
+  <div class="test-holder">
+    <h2 class="form-head">{{Test.compTest.name}}</h2>
+    <p class="section-note">{{Test.compTest.category}}</p>
+    <div class="data-state">
+      <p class="status">Status: {{Test.compTest.live.status ? 'LIVE' : 'ARCHIVED'}}</p> 
+      <p class="by">{{Test.compTest.publishedBy.name}} <span class="hidden-xs">| {{Test.pubDate | date: ddMMMyyyy}}</span></p> 
+    </div>
+    <p><span class="sec-header">Description</span></p>
+    <p>{{Test.compTest.description}}</p>
+    <p><span class="sec-header">Instructions</span></p>
+    <p>{{Test.compTest.instructions}}</p>
+    <div class="point-box">
+      <p class="points">{{Test.compTest.questions.length}} Questions</p>
+      <p class="points">Passing Marks {{Test.compTest.passingLmt}}</p>
+      <p class="points">{{Test.tLimitH}} Hour {{Test.tLimitM}} Minutes</p>
+      <p class="points">Taken by {{Test.compTest.usersAppeared.length}} {{Test.compTest.usersAppeared.length === 1 ? ' user' : ' users'}}</p>
+    </div>
+    <div class="action">
+      <p ng-click="Test.editTestView()" ng-show="Test.arch">
+        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+      </p>
+      <p ng-click="Test.toggleLiveStatus()" ng-show="Test.liv5">
+        <i class="fa fa-bolt" aria-hidden="true"></i>
+      </p>
+      <p ng-click="Test.toggleLiveStatus()" ng-show="Test.arc5">
+        <i class="fa fa-remove" aria-hidden="true"></i>
+      </p>
+      <p ng-click="Test.addQView()" ng-show="Test.arch">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </p>
+    </div>
+  </div>
+  <div class="q-holder">
+    <div class="q-box" ng-repeat="q in Test.compTest.questions">
+      <p> <span class="sec-header">Q</span>{{q.probStatement}}</p>
+      <div ng-repeat="option in q.options">
+        <p><span class="o-header">{{$index+1}}</span> {{option}}</p>
+      </div>
+      <p class="q-ans"><span>Answer : {{q.answer+1}}</span></p>
+      <div class="action-bot">
+        <p ng-show="Test.arch" ng-click="Test.editQpop(q)"><i class="fa fa-pencil-square" aria-hidden="true"></i></p>
+        <p ng-show="Test.arch" ng-click="Test.removeQ(q._id)"><i class="fa fa-window-close" aria-hidden="true"></i></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="qedit-win" ng-show="Test.editQ">
+  <div class="qedit-box"> 
+    <form name="editQform" ng-submit="Test.editQsub()">
+      <p>Question:</p>
+      <p>
+      <textarea ng-model="Test.editQprob" required></textarea>
+      </p>
+      <div>
+        Options
+        <p ng-repeat="option in Test.editQoptions"><input class="nt-inbox" type="text" ng-model="Test.editQoptions[$index]"></p> 
+     </div>
+     <p>
+       Current Answer : {{(Test.editQanswer-0) + (1-0)}}
+     </p>
+     <p>
+       Change Answer To:
+      <select required ng-model="Test.editQanswer">  
+        <option ng-repeat="option in Test.editQoptions track by $index" value="{{$index}}">
+          {{$index+1}}
+        </option>
+      </select>
+      </p>
+      <button class="btn-custom nt-btn" ng-disabled="editQform.$invalid">UPDATE</button>
+    </form>
+
+    <p class="close-edit" ng-click="Test.editQ = false"><i class="fa fa-times" aria-hidden="true"></i></p>
+  </div>
+</div>
+
+
+<div class="tedit-win" ng-show="Test.editT">
+    <div class="tedit-box"> 
+      <form name="editTform" ng-submit="Test.editTsub()">
+        <p>Instructions:</p>
+        <p>
+        <textarea ng-model="Test.editTinstructions" maxlength="500" required></textarea>
+        </p>
+        <p>Time Limit (in minutes)</p>
+        <p>
+          <input type="Number" ng-model="Test.editTtimeLmt" required>
+        </p>
+        <p>Passing Marks</p>
+        <p>
+          <input type="Number" ng-model="Test.editTpassingLmt" required>
+        </p>
+        <button class="btn-custom nt-btn" ng-disabled="editTform.$invalid">UPDATE</button>
+      </form>
+  
+      <p class="close-edit" ng-click="Test.editT = false"><i class="fa fa-times" aria-hidden="true"></i></p>
+    </div>
+  </div>
+
+<!--Notification -->
+<div class="notification" ng-class="{disNotification: Test.serverNotified}">
+  <p ng-class="{then: Test.serverMessageOk, catch: Test.serverMessageError}">{{Test.notifyThis}}</p>
+</div>

@@ -1,0 +1,46 @@
+<div class="base">
+  <h2 class="base-head">{{testResult.test.name}}</h2>
+  <p class="base-sub">Version {{testResult.test.version}} - Taken on {{testResult.test.date | date: ddMMMyyyy}}</p>
+  <p class="base-sub">Passing Score : {{testResult.test.passingLmt}}</p>
+  <p class="sec-header">Description</p>
+  <p>{{testResult.test.description}}</p>
+  <p class="base-score">
+    <span ng-class="{pass: testResult.test.score >= testResult.test.passingLmt, fail: testResult.test.score < testResult.test.passingLmt}">
+      Score {{testResult.test.score}}
+    </span>
+  </p>
+</div>
+
+<p class="q-note">
+  <span>{{testResult.totalAnswered}} Questions answered / {{testResult.result.length}}</span>
+</p>
+
+
+<div ng-repeat="sub in testResult.result" class="qr-base">
+  <div class="qr-qna">
+    <p class="qr-q">
+      <span class="sec-header">Q</span>
+      {{sub.question.probStatement}}      
+    </p>
+    <p class="base-score">
+      <span ng-class="{pass: sub.answer == sub.question.answer, fail: sub.answer != sub.question.answer}">
+        Submitted Answer : {{sub.answer ? (sub.answer-0) + (1-0) : 'None'}}  | <span class="hidden-xs">Time Taken:</span> {{sub.time}} secs
+      </span>
+    </p>
+    <div>
+      <p ng-repeat="option in sub.question.options">
+          <span class="o-header">{{$index + 1}}</span>
+        {{option}}
+      </p>
+    </div>
+    <p class="base-score">
+      <span class="pass">Answer {{(sub.question.answer-0) + (1-0)}}</span>
+    </p>
+  </div>
+</div>
+
+
+<!-- Message notification -->
+<div class="notification" ng-class="{disNotification: testResult.serverNotified}">
+  <p ng-class="{then: testResult.serverMessageOk, catch: testResult.serverMessageError}">{{testResult.notifyThis}}</p>
+</div>

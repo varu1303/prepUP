@@ -1,0 +1,62 @@
+.nt-container {
+  width: 100vw;
+}
+
+.nt-box {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.nt-box h2 {
+  padding: 1rem;
+  text-align: center;
+  color: #37474F;
+}
+
+.nt-box form {
+  text-align: center;
+}
+
+.optCat {
+  margin: 1rem 0;
+}
+
+.nt-inbox {
+  width: 70%;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 3px;
+}
+
+textarea {
+  resize: none;
+  width: 70%;
+  height: 12rem;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.nt-btn {
+  width: 30%;
+}
+
+@media only screen and (max-width: 991px) {
+  .nt-box {
+    width: 80%;
+  }
+
+  .nt-inbox {
+    width: 90%;
+  }
+
+  textarea {
+    width: 90%;
+    height: 18rem;
+  }
+
+  .nt-btn {
+    width: 50%;
+  }
+}

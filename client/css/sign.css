@@ -1,0 +1,457 @@
+.bg-col {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFF;
+  /* background-image: linear-gradient(to bottom right,
+                                      #37474F,
+                                      #37474F 65%,
+                                      #FFF 65%,
+                                      #FFF 100%); */
+}
+
+.box-holder {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.banner-holder {
+  height: 100vh;
+  width: 100vw;
+  top:0;
+  left: 0;
+  position: fixed;
+  z-index: 100;
+  background-color: #fff;
+  transition: all 1s ease-out;
+}
+
+.banner-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#banner {
+  flex-basis: 90%;
+  background-color: #37474F;
+}
+
+.ban-left {
+  width: 100%;
+  height: 100%;
+}
+
+.ban-left h2 {
+  color: white;
+  padding: 2rem;
+  margin-left: 1rem;
+  text-align: center;
+}
+
+.ban-left .banimg-holder {
+  margin: 0 auto;
+  width: 70%;
+  height: 40%;
+  background-image: url('mock.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text-sm {
+  margin-top: 2rem;
+}
+
+.text-sm p {
+  padding: 1rem;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#banner-footer {
+  flex-basis: 10%;
+  background-color: #fff;
+  display: flex;
+}
+
+.icon-holder {
+  margin: auto;
+  width: 30%;
+}
+
+
+
+.icon-holder-sm, .icon-holder-md {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-holder-sm i, .icon-holder-md i {
+  color: #37474F;
+}
+
+.icon-holder-sm i:hover, .icon-holder-md i:hover  {
+  color: #FFF;
+  background-color: #37474F;
+}
+
+.icon-holder .icon-holder-sm i.fa {
+  display: inline-block;
+  border-radius: 60px;
+  padding: 0.5em 0.6em;
+
+}
+
+.icon-holder .icon-holder-md i.fa {
+  display: inline-block;
+  border-radius: 60px;
+  padding: 0.5em 0.6em;
+
+}
+
+
+.sign-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  display: flex;
+  width: 90%;
+  background-color: #FFF;
+  background-color: #FAFCFC;
+  border: 2px solid #00C8E7;
+}
+
+.sign-form {
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.form-head {
+  padding: 1rem;
+}
+
+.btn-custom {
+  background-color: #37474F;
+  color: #FFF;
+  padding: 1rem 2.4rem;
+  transition: all .1s ease-in;
+}
+
+.inbox {
+  width: 70%;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  border-radius: 3px;
+}
+
+.pop-link {
+  padding: 2rem;
+  margin: 1rem;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.link-left, .link-right {
+  flex-basis: 50%;
+  transition: all .2s ease-in;
+  font-weight: bolder;
+}
+
+.link-left:hover, .link-right:hover {
+  text-decoration: underline;
+}
+
+.link-left:active, .link-right:active {
+  text-decoration: underline;
+}
+
+.btn-custom:hover {
+  transform: translateY(-1px);
+}
+
+.btn-custom:active {
+  transform: translateY(-.8px);
+}
+
+.link-left {
+  text-align:center;
+}
+
+.link-right {
+  text-align: center;
+}
+
+#fb-log, #gl-log {
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 2%;
+  width: 50%;
+}
+
+#gl-log {
+  margin-top: 1.5rem;
+}
+
+.social-log a:link, a:visited {
+  text-decoration: none;
+  transition: all .1s ease-in;
+}
+
+.social-log a:hover, a:active {
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+
+.social-log-f a {
+  color: #fff;
+  background-color: #4867AA;
+}
+
+.social-log-g a {
+  color: #fff;
+  background-color: #DC483C;
+}
+
+.main-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+
+.popup-win {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pop-box {
+  width: 80%;
+  min-height: 80%;
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  z-index: 15;
+  border-radius: 1%;
+}
+
+.pop-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -38%);
+  width: 90%;
+  height: 100%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.pop-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+label {
+  display: none;
+}
+
+.instruct {
+  background-color: #18BC9C; 
+  padding: 1.3rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .sign-form {
+    width: 100%;
+  }
+
+  #i-size {
+    font-size: 2.5rem;
+  }
+
+
+  .sign-form h2 {
+    font-size: 1.6rem;
+  }
+
+  .sign-form input {
+    width: 95%;
+  }
+
+  #fb-log, #gl-log {
+    width: 80%;
+  }
+
+  .sign-box {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .pop-form {
+    width: 100%;
+  }
+
+  .pop-box {
+    width: 98%;
+  }
+
+  .form-head {
+    font-size: 2.3rem;
+  }
+
+  .form-head-sm {
+    font-size: 1.8rem;
+  }
+
+  .notification p {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+}
+
+@media only screen and (min-width: 992px) {
+
+#banner {
+  display: flex;
+}
+  
+
+.ban-left {
+  flex-basis: 40%;
+  position: relative;
+}
+
+.ban-left h2 {
+  text-align: left;
+}
+
+.ban-left .banimg-holder {
+  width: 70%;
+  height: 40%;
+  position: absolute;
+  right: -3rem;
+  top: 14rem;
+  background-image: url('mock.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ban-right {
+  flex-basis: 60%;
+  display: flex;
+}
+
+.right-content {
+  margin: auto;
+}
+
+.right-content p {
+  margin-left: 3rem;
+  color: white;
+  padding: 1rem;
+  font-weight: bolder;
+}
+
+#content-1 {
+  padding-top: 10rem;
+}
+}
+
+.data {
+  position: relative;
+}
+
+.invalid-data {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #DC483C;
+  color: white;
+  padding: .1rem;
+  display: inline-block;
+}
+
+.notification {
+  position: fixed;
+  top: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15000;
+}
+
+.notification p {
+  display: inline-block;
+  padding: 2rem;
+  font-weight: bolder;
+  color: white;
+  text-align: center;
+}
+
+.disNotification {
+  top: 0px;
+}
+
+.then {
+  background-color: #05E177;
+}
+
+.catch {
+  background-color: #DC483C;
+}
+
+@media only screen and (max-width: 550px) {
+  .link-left {
+    text-align: left;
+  }
+  
+  .link-right {
+    text-align: right;
+  }
+
+  .icon-holder {
+    margin: auto;
+    width: 40%;
+  }
+}
+
+
+#divider {
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem;
+}
+
+#divider::before,
+#divider::after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: .2rem;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+#divider::before {
+  right: 0.5rem;
+  margin-left: -50%;
+}
+
+#divider::after {
+  left: 0.5rem;
+  margin-right: -50%;
+}

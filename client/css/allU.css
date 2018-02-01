@@ -1,0 +1,138 @@
+.allu-holder {
+  width: 85%;
+  margin: 1rem auto;
+  font-weight: bolder;
+}
+
+
+.main-head {
+  font-size: 2.3rem;
+  text-align: center;
+  background-color: #37474F;
+  color: #FFF;
+  padding: 1rem;
+}
+
+.one-holder {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-weight: bolder;  
+}
+
+.intro {
+  width: 100%;
+  padding: .5rem;
+  background-color: #37474F;
+  color: #FFF;
+  text-align: center;
+  position: relative;
+}
+
+.count {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: .5rem;
+  background-color: #18BC9C;
+}
+
+.onestats {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.onestats p {
+  color: #FFF;
+  padding: 1rem;
+  text-align: center;
+  margin: .2rem 0;
+  background-color: #18BC9C;
+}
+
+.onebutton {
+  padding: 1rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.onebutton span {
+  background-color: #18BC9C;
+  display: inline-block;
+  padding: 1rem;
+}
+
+.onedetail {
+  border-top: 1px solid #18BC9C;
+}
+
+.chunk {
+  text-align: center;
+  margin-top: .6rem;
+  padding: 1rem;
+}
+
+.c-link span {
+  display: inline-block;
+  padding: .5rem;
+  background-color: #18BC9C;
+}
+
+.fil-lab {
+  text-align: center;
+}
+
+.fil-in {
+  text-align: center;
+}
+
+.fil-in input {
+  width: 80%;
+  padding: .1rem .2rem;
+  border-radius: 3px;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .onestats {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .onestats p {
+    flex-basis: 30%;
+  }
+
+  .fil-1 {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .fil-lab {
+    flex-basis: 35%;
+    text-align: right;
+  }
+  
+  .fil-in {
+    flex-basis: 60%;
+    text-align: left;
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 991px) {
+  .allu-holder {
+    width: 80%;
+  }
+  .one-holder, .onestats {
+    width: 98%;
+  }
+
+  .main-head {
+    font-size: 1.7rem;
+  }
+}

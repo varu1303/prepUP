@@ -1,0 +1,200 @@
+.live-container {
+  width: 95%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+}
+
+.summ-set {
+  padding: .2rem;
+  position: relative;
+  background-color: #e8e1e1;
+}
+
+.secq-header {
+  transform: translateX(-.3rem);
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem;
+  display: inline-block;
+}
+
+.slide-btn {
+  position: absolute;
+  top:100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  background-color: #18BC9C;
+  display: none;
+  z-index: 2;
+  color: #FFF;
+}
+
+.qNoSet {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.qNo {
+  padding: .5rem;
+  margin: .2rem;
+  margin-top: 3rem;
+  width: 4rem;
+  height: 5rem;
+  text-align: center;
+  border: 1px solid #37474F;
+  color: #37474F;
+  background-color: #FFF;
+  display: flex;
+}
+
+.qNo p {
+  margin: auto;
+}
+
+.tlbtn-holder {
+  margin-top: 3rem;
+}
+
+.tltime-holder {
+  margin-top: 5rem;
+}
+
+.Qans {
+  background-color: #18BC9C;
+  color: #FFF;
+}
+
+.currQ {
+  background-color: #37474F;
+  color: #FFF;
+}
+
+.summ-key {
+  margin-top: 2rem;
+}
+
+.summ-key p {
+  text-align: center;
+}
+
+
+.q-holder {
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.q-holder .q-prob {
+  background-color: #37474F;
+  color: #fff;
+  font-weight: bolder;
+
+}
+
+.q-optblock {
+  margin-top: 3rem;
+}
+
+
+.sec-opt {
+  transform: translateX(-1rem);
+  background-color: #18BC9C;
+  color: white;
+  padding: 1.2rem;
+  display: inline-block;
+  transform: translateX(-.5rem);
+  margin-right: .5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.q-holder .q-opt {
+  color: #37474F;
+  border: 1px solid #37474F;
+  padding: .8rem;
+  border-radius: 2px;
+  background-color: #FFF;
+}
+
+.q-nav {
+  display: flex;
+}
+
+.q-static {
+  flex:1;
+}
+
+.q-lr {
+  padding: 2rem;
+  font-size: 1.5rem;
+  background-color: #18BC9C;
+  color: #FFF;
+  margin: 1rem;
+  font-weight: bolder;
+}
+
+.q-holder .keyselect {
+  background-color: #37474F;
+  color: #FFF;
+}
+
+
+
+@media only screen and (min-width: 481px) {
+  .summ-set {
+    flex: 1;
+  }
+
+  .q-one {
+    flex:2;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .live-container {
+    flex-direction: column;
+  }
+  .slide-btn {
+    display: block;
+  }
+
+  .q-one {
+    margin-top: 2rem;
+  }
+}
+
+.testloader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+}
+
+.tl-image {
+  width: 98%;
+  height: 98%;
+  background-color: #18BC9C;
+  margin: auto;
+  display: flex;
+}
+
+.tl-cimg {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
+.tl-loadtext {
+  color: #FFF;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 3rem;
+}
+
+

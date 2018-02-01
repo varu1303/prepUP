@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html ng-app="quizApp">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="prepUp">
+    <meta name="author" content="Varun">
+    <base href="/">
+
+    <title>prepUp</title>
+
+    <!---Importing Font ---->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Bootstrap minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="css/angular.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/sign.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/nt.css">
+    <link rel="stylesheet" href="css/addQ.css">
+    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/allU.css">
+    <link rel="stylesheet" href="css/at.css">
+    <link rel="stylesheet" href="css/tlive.css">
+    <link rel="stylesheet" href="css/trUser.css">
+  </head>
+  <body ng-controller="MainController as Main" ng-cloak>
+    <nav ng-if="!welcome && !live">
+      <div class="nav-box">
+        <p class="nav-left">
+          <span id="navname" ng-click="Main.goHome()">{{nameFromToken}}</span>
+        </p>
+        <div class="nav-right">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <div class="dropdown-content">
+            <a href="#" class="dropmenu" ng-click="Main.popChange = true">Change Password</a>
+            <a href="#" class="dropmenu" ng-click="Main.removeToken()">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="options" ng-if="!welcome && !live">
+      <div class="opt-icon" ng-show="isAdmin">
+        <p ng-click="Main.navigate('/home')"><i class="fa fa-home" aria-hidden="true"></i></p>
+        <p ng-click="Main.navigate('/newtest')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+        <p ng-click="Main.navigate('/allusers')"><i class="fa fa-address-book-o" aria-hidden="true"></i></p>
+      </div>
+      <div class="options" ng-show="!welcome">
+        <div class="opt-icon" ng-show="!isAdmin">
+          <p ng-click="Main.navigate('/home')"><i class="fa fa-home" aria-hidden="true"></i></p>
+          <p ng-click="Main.navigate('/availableTests')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+        </div>
+      </div>
+    </div>
+<!--- Popup for change password -->
+    <div class="main-holder" ng-if="Main.popChange">
+      <div class="popup-win">
+        <div class="pop-box">
+          <div class="pop-form">
+            <h2 class="form-head">CHANGE PASSWORD</h2>
+            <form name="changePassForm" ng-submit="Main.changePass()" novalidate>
+              <label for="newPassword">New Password</label>
+              <div class="data">
+                <input class="inbox" id="newPassword" type="password" name="newPass" ng-model="Main.changedPassword"
+                  placeholder="New Password" required ng-minlength="6" ng-maxlength="10">
+                <p class="invalid-data" ng-show="(changePassForm.newPass.$error.minlength || changePassForm.newPass.$error.maxlength) && changePassForm.newPass.$dirty">
+                  6 to 10 char long password required
+                </p>
+              </div>
+              <div class="data">
+                <label for="conNewPassword">Confirm Password</label>
+                <input class="inbox" id="conNewPassword" type="password" name="conNewPass" 
+                  ng-model="Main.conChangedPassword" placeholder="Confirm Password" required>
+                <p class="invalid-data" ng-show="changePassForm.conNewPass.$error.required && changePassForm.conNewPass.$dirty">
+                  Confirm Password
+                </p>
+              </div>
+              <br>
+              <button type="submit" class="btn-custom" ng-disabled="changePassForm.$invalid">
+                SUBMIT
+              </button>
+            </form>
+          </div>
+          <div class="pop-close" ng-click="Main.popChange = !Main.popChange">
+            <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Login form if visitor not logged in-->
+    <div class="bg-col" ng-if="welcome"> 
+    <div class="container">
+      <div class="box-holder">
+        <div class="sign-box">
+          <div class="sign-form">
+            <h2 class="form-head">GET STARTED</h2>
+            <form autocomplete="on" name="inForm" ng-submit="Main.signIn()" novalidate>
+              <label for="sign-email">Enter Email</label>
+              <div class="data">
+                <input class="inbox" type="email" id="sign-email" name="emailId" ng-model="Main.signInEmail" 
+                  placeholder="Email ID" required>
+                <p class="invalid-data" ng-show="(inForm.emailId.$error.required || inForm.emailId.$error.email) && inForm.emailId.$dirty">
+                    A valid email Id is required
+                </p>
+              </div>
+              <label for="sign-pass">Enter Password</label>
+              <div class="data">
+                <input class="inbox" type="password" id="sign-pass" name="password" ng-model="Main.signInPass"
+                  placeholder="Password" required>
+                <p class="invalid-data" ng-show="!inForm.password.$valid && inForm.password.$dirty">
+                    Password is required
+                </p>
+              </div>
+              <br>
+              <button type="submit" class="btn-custom" ng-disabled="inForm.$invalid">SIGN IN</button>
+              <div class="pop-link">
+                <p class="link-left" ng-click="Main.popreq('signup')">Sign up!</p>
+                <p class="link-right" ng-click="Main.popreq('forgot')">Forgot Password?</p>
+              </div>
+            </form>
+            <h4 id="divider">
+              OR
+            </h4>
+            <p class="social-log social-log-f"><a href="/auth/facebook" target="_self" id="fb-log">
+              <i class="fa fa-facebook" aria-hidden="true"></i>acebok Login
+            </a></p>
+            <p class="social-log social-log-g"><a href="/auth/google" target="_self" id="gl-log">
+              <i class="fa fa-google" aria-hidden="true"></i>oogle Login
+            </a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+<!-- Banner pop up -->
+    <div class="banner-holder" ng-if="welcome">
+      <div class="banner-div">
+        <div id="banner">
+          <div class="ban-left">
+            <h2>prepUP</h2>
+            <div class="banimg-holder">
+            </div>
+            <div class="text-sm hidden-md hidden-lg">
+              <p>A better way to practice!</p>
+              <p>MOCK tests on English, Quantitative Aptitude and Logical Reasoning.</p>
+              <p><span class="instruct">Tap anywhere to jump right in!</span></p>
+            </div>
+          </div>
+          <div class="ban-right hidden-xs hidden-sm">
+            <div class="right-content">
+              <p id="content-1">
+                A better way to practice!
+              </p>
+              <p>
+                SIGN UP and start taking MOCK tests on English, Quantitative Aptitude and Logical Reasoning.
+              </p>
+              <p><span class="instruct">Click anywhere to jump right in!</span></p>
+            </div>
+          </div>
+        </div>
+        <div id="banner-footer">
+          <div class="icon-holder">
+            <div class="icon-holder-md hidden-xs hidden-sm">
+              <p><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></p>
+              <p><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></p>
+              <p><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></p>
+            </div>
+            <div class="icon-holder-sm hidden-md hidden-lg">
+              <p><i id="i-size" class="fa fa-facebook-official" aria-hidden="true"></i></p>
+              <p><i id="i-size" class="fa fa-twitter" aria-hidden="true"></i></p>
+              <p><i id="i-size" class="fa fa-envelope" aria-hidden="true"></i></p>
+            </div>
+          </div>
+        </div id="banner-footer">
+      </div>
+    </div>
+<!-- Message notification -->
+    <div class="notification" ng-class="{disNotification: Main.serverNotified}">
+      <p ng-class="{then: Main.serverMessageOk, catch: Main.serverMessageError}">{{Main.notifyThis}}</p>
+    </div>
+<!-- POP UP for forgot password and sign up -->
+    <div class="main-holder" ng-if="Main.popnow">
+      <div class="popup-win">
+        <div class="pop-box">
+          <div ng-if="Main.signup" class="pop-form">
+            <h2 class="form-head">JOIN US</h2>
+            <form name="upForm" autocomplete="on" ng-submit="Main.register(Main.userDetails)" novalidate>
+              <label for="email">Email</label>
+              <div class="data">
+                <input class="inbox" type="email" id="email" name="emailId" ng-model="Main.userDetails.emailId" 
+                    placeholder="Email Id" required>
+                <p class="invalid-data" ng-show="(upForm.emailId.$error.required || upForm.emailId.$error.email) && upForm.emailId.$dirty">
+                    A valid email Id is required
+                </p>
+              </div>
+              <label for="name">Name</label>
+              <div class="data">
+                <input class="inbox" type="text" id="name" name="name" ng-model="Main.userDetails.name"
+                  placeholder="Name" required>
+                <p class="invalid-data" ng-show="!upForm.name.$valid && upForm.name.$dirty">
+                    Name is required
+                </p>
+              </div>
+              <label for="password">Password</label>
+              <div class="data">
+                <input class="inbox" type="password" id="password" name="password" 
+                  placeholder="Password (6 to 10 char long)" ng-model="Main.userDetails.password" 
+                  ng-minlength="6" ng-maxlength="10" required>
+                <p class="invalid-data" ng-show="!upForm.password.$valid && upForm.password.$dirty">
+                    6 - 10 char long password required
+                </p>
+              </div>
+              <label for="confirmpass">Confirm Password</label>
+              <div class="data">
+                <input class="inbox" type="password" id="confirmpass" name="conpassword" 
+                  placeholder="Confirm Password" ng-model="Main.userDetails.conpassword" required>
+                <p class="invalid-data" ng-show="!upForm.conpassword.$valid && upForm.conpassword.$dirty">
+                    Password should be confirmed
+                </p>
+              </div>
+              <br>
+              <button type="submit" class="btn-custom" 
+                  ng-disabled="upForm.$invalid">REGISTER</button>
+            </form>
+          </div>
+          <div ng-if="Main.forgotpass" class="pop-form">
+            <h2 class="form-head form-head-sm">PLESE SUBMIT YOUR REGISTERED EMAIL ID</h2>
+            <form name="forgotForm" autocomplete="on" ng-submit="Main.forgotPass()" novalidate>
+              <label for="registeredEmail">Registered Email</label>
+              <div class="data">
+                <input class="inbox" id="registeredEmail" type="email" name="regemail" ng-model="Main.registeredEmail"
+                placeholder="Email ID" required>
+                <p class="invalid-data" ng-show="(forgotForm.regemail.$error.required || forgotForm.regemail.$error.email) && forgotForm.regemail.$dirty">
+                    A valid email Id is required
+                </p>
+              </div>
+              <br>
+              <button type="submit" class="btn-custom" ng-disabled="forgotForm.$invalid">
+                SUBMIT
+              </button>
+            </form>
+          </div>
+          <div class="pop-close" ng-click="Main.popnow = !Main.popnow">
+            <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-view class="view-animate"></div>
+
+    <!---Importing Icons ---->
+    <script src="https://use.fontawesome.com/7d3906fbc4.js"></script>
+    <!-- socket lib -->
+    <script src="/socket.io/socket.io.js"></script> 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- slider jquery -->
+    <script src="jquery/slider.js"></script>
+    <!--chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zingchart/2.6.2/zingchart.min.js"></script>
+    <!-- Angular Imports -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <!--Fushion angular directive -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zingchart-angularjs/1.2.0/zingchart-angularjs.min.js"></script>
+    <!-- Angular route CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <!--Angular Animate -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+    <!--Angular Code-->
+    <script src="angular/app-angular.js"></script>
+    <script src="angular/route-angular.js"></script>
+    <!-- Controllers -->
+    <script src="angular/controllers/socialCtrl.js"></script>
+    <script src="angular/controllers/homeCtrl.js"></script>
+<!-- following are user specific controllers to handle view related to an user -->
+    <script src="angular/controllers/atCtrl.js"></script>
+    <script src="angular/controllers/testCtrl.js"></script>
+    <script src="angular/controllers/testLiveCtrl.js"></script>
+    <script src="angular/controllers/testResultCtrl.js"></script>
+<!-- following are admin specific controllers to handle views related to an admin, like getting all users
+then a user and then test result of that user's any test -->
+    <script src="angular/controllers/allUserCtrl.js"></script>
+    <script src="angular/controllers/userResultCtrl.js"></script>
+    <script src="angular/controllers/newTestCtrl.js"></script>
+    <script src="angular/controllers/addQCtrl.js"></script>
+    <!-- Services -->
+    <script src="angular/services/httpRequest.js"></script>
+    <script src="angular/services/tokenService.js"></script>
+    <script src="angular/services/socket.js"></script>
+    <script src="angular/services/testCountFilter.js"></script>
+    <script src="angular/services/avgScoreFilter.js"></script>
+    <script src="angular/services/nameFilter.js"></script>
+    <script src="angular/services/getOneQFilter.js"></script>
+    <script src="angular/services/secondsToTime.js"></script>
+    <script src="angular/services/reverse.js"></script>
+    <script src="angular/services/sectionFilter.js"></script>
+  </body>
+</html>

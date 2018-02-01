@@ -1,0 +1,27 @@
+<div class="addQ-holder">
+  <h2 class="form-head">ADD QUESTION TO TEST</h2>
+  <p class="linkPage"><a href="/test/{{addQ.tId}}"><span>View Test</span></a></p>
+  <form name="aqForm" ng-submit="addQ.postQuestion()">
+    <p><textarea placeholder="Problem Statement" maxlength="500" ng-model="addQ.questionDetails.probStatement" required></textarea></p>
+    <p ng-repeat="option in addQ.questionDetails.options track by $index">
+      <input class="nt-inbox" type="text" required="true" placeholder="option {{$index+1}}" ng-model="addQ.questionDetails.options[$index]">
+    </p>
+    <div class="addq">
+      <p class="ans">
+        Answer : 
+        <select ng-model="addQ.questionDetails.answer">
+          <option ng-repeat="option in addQ.questionDetails.options track by $index" value="{{$index}}">
+            {{$index+1}}
+          </option>
+        </select>
+      </p>
+      <p ng-click="addQ.moreOption()"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i><span class="hidden-xs"> Add Option</span></p> 
+    </div>
+    <button class="btn-custom nt-btn" ng-disabled="aqForm.$invalid">ADD</button>
+  </form>
+</div>
+
+<!--Notification -->
+<div class="notification" ng-class="{disNotification: addQ.serverNotified}">
+  <p ng-class="{then: addQ.serverMessageOk, catch: addQ.serverMessageError}">{{addQ.notifyThis}}</p>
+</div>

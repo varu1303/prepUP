@@ -1,0 +1,230 @@
+.test-holder {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  color: #FFF;
+  font-weight: bolder;
+  background-color: #37474F;
+  margin-top: 2rem;
+  position: relative;
+}
+.test-holder h2 {
+  padding: 1rem;
+  text-align: center;
+}
+
+.q-holder {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  color: #FFF;
+  font-weight: bolder;
+  margin-top: 2rem;
+}
+
+.q-box {
+  background-color: #37474F;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.test-holder p, .q-holder p {
+  margin-top: 1rem;
+}
+
+.o-header {
+  transform: translateX(-1rem);
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem;
+  width: 3rem;
+  height: 4rem;
+  display: inline-block;
+}
+
+.section-note {
+  text-align: center;
+}
+
+.sec-header {
+  transform: translateX(-1rem);
+  background-color: #18BC9C;
+  color: white;
+  padding: 1rem;
+  display: inline-block;
+}
+
+.points {
+  background-color: #18BC9C;
+  padding: 1rem;
+  text-align: center;
+}
+
+.q-box p {
+  padding: 2rem;
+}
+
+
+.q-ans {
+  text-align: center;
+}
+
+.q-ans span {
+  display: inline-block;
+  background-color: #18BC9C;
+  padding: 1rem;
+}
+
+.action {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  display: flex;
+}
+
+.action-bot {
+  position: absolute;
+  top: -2rem;
+  right: -1rem;
+  display: flex;  
+}
+
+.action p, .action-bot p  {
+  font-size: 2rem;
+  text-align: center;
+  background-color: #18BC9C;
+  color: #FFF;
+  padding: 1rem;
+  margin: .5rem;
+  width: 4rem;
+}
+
+
+.qedit-win, .tedit-win {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.tedit-box {
+  margin: auto;
+  width: 90%;
+  height: 95%;
+  background-color: #FFF;
+  position: relative;
+  display: flex;
+}
+
+.tedit-box form {
+  width: 90%;
+  height: 98%;
+  margin: auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.tedit-box form p {
+  text-align: center;
+  padding: 1rem;
+}
+
+.qedit-box {
+  background-color: #FFF;
+  margin: auto;
+  width: 90%;
+  height: 95%;
+  position: relative;
+  display: flex;
+}
+
+.qedit-box form {
+  width: 90%;
+  height: 98%;
+  margin: auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+.qedit-box form p {
+  padding: 1rem;
+  text-align: center;
+}
+
+.additionOpt {
+  text-align: right;
+}
+
+.qedit-box form button {
+  padding: 1rem;
+}
+
+
+.close-edit {
+  position: absolute;
+  top: 1rem;
+  right: 0.2rem;
+  padding: 1rem;
+  text-align: center;
+  color: black;
+}
+
+.close-edit i {
+  font-size: 3rem;
+}
+
+.take-btn {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+@media only screen and (max-width: 971px) {
+  .tedit-box form {
+    width: 95%;
+  }
+
+  .test-holder {
+    width: 80%;
+  }
+
+  .close-edit {
+    right: -0.3rem;
+  }
+
+  .close-edit i {
+    font-size: 2rem;
+  }
+
+  .q-holder {
+    width: 85%;
+  }
+
+  .qedit-box {
+    width: 98%;
+  }
+
+  .action p, .action-bot p {
+    font-size: 1.3rem;
+    width: 3rem;
+  }
+
+  .q-box p {
+    padding: 1rem;
+  }
+
+  .action-bot {
+    right: -.5rem;
+  }
+  
+    
+}
+
+@media only screen and (min-width: 768px) {
+  .point-box {
+    display: flex;
+    justify-content: space-around;
+  }  
+}

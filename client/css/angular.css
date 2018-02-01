@@ -1,0 +1,15 @@
+/*To get ng-cloak working!*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/*Angular views */
+.view-animate.ng-enter {
+  transition:0.3s ease-in all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.view-animate.ng-enter.ng-enter-active {
+  opacity:1;
+}

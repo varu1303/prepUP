@@ -1,0 +1,42 @@
+<div class="nt-container">
+  <div class="nt-box">
+    <h2 class="form-head">CREATE A NEW TEST</h2>
+    <form name="newTestForm" ng-submit="newTest.createTest()">
+      <div class="data">
+        <label for="tName">Test Name</label>
+        <input class="nt-inbox" id="tName" type="text" placeholder="Test Name" required ng-model="newTest.testDetails.name">
+      </div>
+      <div class="data">
+        <textarea placeholder="Write a short description in less than 200 characters" maxlength="200" ng-model="newTest.testDetails.description" required></textarea>
+      </div>
+      <div class="data">
+        <textarea placeholder="Test instructions (max 500 characters)" maxlength="500" ng-model="newTest.testDetails.instructions" required></textarea>
+      </div>
+      <div class="data">
+        <label for="pLmt">Marks required to pass</label>
+        <input class="nt-inbox" type="number" id="pLmt" placeholder="Passing Marks / 100" ng-model="newTest.testDetails.passingLmt" required>
+      </div>
+      <div class="data">
+        <label for="tLmt">Test Name</label>
+        <input class="nt-inbox" type="number" id="tLmt" placeholder="Time Limit in Minutes" ng-model="newTest.testDetails.timeLmt" required>
+      </div>
+      <div class="data">
+        <label for="catOpt">Category of Test </label>
+        Category : 
+        <select id="catOpt" class="optCat" required ng-model="newTest.testDetails.category">
+          <option value="English">English</option>
+          <option value="Quantitative Aptitude">Quantitative Aptitude</option>
+          <option value="Logical Reasoning">Logical Reasoning</option>
+        </select>
+      </div>
+      <p>
+      <button class="btn-custom nt-btn" ng-disabled="newTestForm.$invalid">SUBMIT</button>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!--Notification -->
+<div class="notification" ng-class="{disNotification: newTest.serverNotified}">
+  <p ng-class="{then: newTest.serverMessageOk, catch: newTest.serverMessageError}">{{newTest.notifyThis}}</p>
+</div>

@@ -1,0 +1,130 @@
+<div ng-show="!Home.isAdmin">
+
+  <div ng-show="!Home.tests.length && Home.loadDone" class="noTestHome">
+    <div class="greetbox">
+      <p>Hi! <i class="fa fa-hand-spock-o" aria-hidden="true"></i></p>
+      <p>You have not taken any tests yet!</p>
+      <p class="greetlink"><a href="/availableTests">GET STARTED <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a></p>
+    </div>
+  </div>
+
+  <div ng-show="Home.tests.length" class="testHome">
+    <div class="uTestStat">
+      <p>Total Tests Taken : {{Home.tests.length}}</p>
+      <p>Pass %age : {{Home.uPassPerc}}</p>
+      <p>Average Score : {{Home.uTestAvg}}</p>
+    </div>
+
+    <!--CHART 1-->
+    <h2 class="form-head"><span class="head-underline">ScoreTrack - sectionwise</span></h2>
+    <div class="chart-container">
+    <zingchart id="chart-1" zc-json="Home.myConfig1" zc-width="100%" style="display:block;"></zingchart>
+    </div>
+    <!--END CHART 1 -->
+    <div class="chart-help">
+      <p id="help-eng">English</p>
+      <p id="help-quant">Quantitative Aptitude</p>
+      <p id="help-log">Logical Reasoning</p>
+    </div>
+   <!--CHart1 help ends here -->
+   <!-- Chart 2 -->
+   <h2 class="form-head"><span class="head-underline">Average Score - sectionwise</span></h2>
+   <div class="chart-container">
+    <zingchart id="chart-2" zc-json="Home.myConfig2" zc-width="100%" style="display:block;"></zingchart>
+  </div>
+   <!-- Chart 2 ends here -->
+   <h2 class="form-head"><span class="head-underline">ALL TESTS</span></h2>
+    <div class="utest-list">
+      <div class="col-xs-12 col-sm-6 col-md-4 utestitem" 
+          ng-repeat="test in Home.tests | reverse">
+        <div class="utest-summbox" ng-class="{tstatL: test.passed, tstatA: !test.passed}">
+          <div class="utest-summ">
+            <p>{{test.name}} | {{test.date | date:ddMMMyyyy}}</p>
+            <p>{{test.category}}</p>
+            <p>{{test.score}}</p>
+            <p><a ng-href="/testresult/{{test._id}}">View Result</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!--Admin's home -->
+<div ng-show="Home.isAdmin">
+
+<div ng-show="!Home.tests.length && Home.loadDone" class="noTestHome">
+    <div class="greetbox">
+      <p>Hi! <i class="fa fa-hand-spock-o" aria-hidden="true"></i></p>
+      <p>No Tests in DB</p>
+      <p class="greetlink"><a href="/newtest">CREATE TEST <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a></p>
+    </div>
+  </div>
+
+  <div class="contain-ml hidden-xs hidden-sm">
+    <div class="view-ml" ng-show="Home.tests.length">
+      <div class="v-left">
+        <ul>
+          <li>Total Tests : {{Home.tests.length }}</li>
+          <li class="tstat" ng-repeat="test in Home.tests | reverse" ng-click="Home.showThis(test, $index)" 
+          ng-class="{vhigh: Home.inshown == $index, tstatL: test.live.status, tstatA: !test.live.status}">
+            {{test.name}}
+          </li>
+        </ul>
+      </div>
+      <div class="v-right">
+        <div class="v-data">
+          <div class="vd-content">
+            <h2>{{Home.selname}}</h2>
+            <p class="section-note">{{Home.category}}</p>
+            <div class="data-state">
+              <p class="status">Status: {{Home.selstatus ? 'LIVE' : 'ARCHIVED'}}</p> 
+              <p class="by">{{Home.selpubby}} | {{Home.selpubdate | date: ddMMMyyyy}}</p>  
+            </div>
+
+            <p>Description : {{Home.seldesc}}</p>
+            <p class="cen">Number of questions : {{Home.selqNo}}</p>
+            <p class="cen">{{Home.selnousers}} {{Home.selnousers == 1? 'user has' : 'users have'}} taken this test.</p>
+          </div>
+          <p class="cen bot-cen" ng-click="Home.toTestView(Home.selid)"><button class="btn-custom">
+              VIEW COMPLETE DETAILS
+            </button></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="contain-sx hidden-md hidden-lg">
+    <div class="view-sx">
+      <p class="anchor" ng-show="Home.tests.length">Total Tests : {{Home.tests.length}}</p>
+      <br>
+      <div ng-repeat="test in Home.tests | reverse">
+        <p ng-class="{tstatL: test.live.status, tstatA: !test.live.status}" 
+          class="anchor" ng-click="Home.showHD($index)">
+        {{test.name}}
+        </p>
+        <div class="hidden-detail" ng-show="Home.showHiddenDetail == $index">
+          <p class="section-note">{{test.category}}</p>
+          <div class="data-state">
+            <p class="status">{{test.live.status ? 'LIVE' : 'ARCHIVED'}}</p> 
+            <p class="by">{{test.publishedBy.name}}</p>  
+          </div>
+          <p>{{test.description}}</p>
+          <p class="cen">Number of questions : {{test.questions}}</p>
+          <p class="cen">{{test.usersAppeared}} {{test.usersAppeared == 1? 'user has' : 'users have'}} taken this test.</p>
+          <p class="cen" ng-click="Home.toTestView(test._id)"><button class="btn-custom">
+              VIEW COMPLETE DETAILS
+            </button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Message notification -->
+<div class="notification" ng-class="{disNotification: Home.serverNotified}">
+  <p ng-class="{then: Home.serverMessageOk, catch: Home.serverMessageError}">{{Home.notifyThis}}</p>
+</div>
