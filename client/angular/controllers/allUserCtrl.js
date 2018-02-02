@@ -51,7 +51,7 @@ angular.module('quizApp')
 
 
       au.setShowTest = index => {
-        au.usersList[index].showTestDetail = !au.usersList[index].showTestDetail;
+        au.filteredUser[index].showTestDetail = !au.filteredUser[index].showTestDetail;
       }
 
       au.result = (uEmail, utId) => {
